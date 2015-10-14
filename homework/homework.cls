@@ -9,18 +9,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{homework}[2015/10/14 Homework class for mathematical subjects]
 
-% Declaration of options
-
-% Passes unrecognized options to the parent class
-
-% EXECUTION OF OPTIONS:
-
-% PACKAGE LOADING
-
-% SPECIAL COMMANDS FOR PACKAGE AND CLASS FILES
-
-%variables
-
 \def\course#1{\def\@course{#1}}
 \def\weekno#1{\def\@weekno{Week #1}}
 
@@ -28,23 +16,39 @@
 \newcommand{\week}[1]{%
   \newpage
   \weekno{#1}
+  \section{Week #1}
+  \secttoc
 }
 
-
-\newcommand{\problem}[1]{\section*{Problem #1}}
+\newcommand{\problem}[1]{\subsection{Problem #1}}
 \newenvironment{problemtext}
-{\begin{center} \textsc{Problem Statement} \end{center}\itshape \begin{quote}}{\end{quote}\rmfamily}
+{\itshape\begin{flushleft}}{\end{flushleft}\rmfamily}
 
 \LoadClass{article}
 
-\AtEndOfClass{\RequirePackage[ragged, side]{footmisc}}
+%\renewcommand{\maketitle}{%
+%  
+%  \@title
+%  \@author
+% \@course
+%}
+\AtEndOfClass{\RequirePackage[flushmargin, ragged, side]{footmisc}}
 \AtEndOfClass{\RequirePackage{fancyhdr}}
 \AtEndOfClass{\RequirePackage{enumerate}}
-\AtEndOfClass{\pagestyle{fancy}}
+\AtEndOfClass{\RequirePackage{minitoc}}
 \AtEndOfClass{\RequirePackage{amsthm, amsmath, amssymb}}
+
+\AtEndOfClass{\pagestyle{fancy}}
 \AtEndOfClass{\lhead{\@course}}
 \AtEndOfClass{\chead{\@author}}
 \AtEndOfClass{\rhead{\@weekno}}
+
 \AtEndOfClass{\theoremstyle{definition}}
 \AtEndOfClass{\newtheorem*{solution}{Solution}}
-
+\AtEndOfClass{\setcounter{secnumdepth}{0}}
+\AtBeginDocument{%
+  \weekno{0}
+  \maketitle
+  \dosecttoc
+  \tableofcontents
+}
