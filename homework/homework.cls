@@ -46,6 +46,7 @@
 \AtEndOfClass{\theoremstyle{definition}}
 \AtEndOfClass{\newtheorem*{solution}{Solution}}
 \AtEndOfClass{\setcounter{secnumdepth}{0}}
+\AtEndOfClass{\setcounter{tocdepth}{1}}
 \AtBeginDocument{%
   \weekno{0}
   \maketitle
