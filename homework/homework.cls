@@ -12,7 +12,8 @@
 \def\course#1{\def\@course{#1}}
 \def\weekno#1{\def\@weekno{Week #1}}
 
-\newcommand{\comment}[1]{\footnote{#1}}
+\newcommand{\comment}[1]{\footnote{\color{blue} #1}}
+\newcommand{\unsure}[1]{\footnote{\color{red} #1}}
 \newcommand{\week}[1]{%
   \newpage
   \weekno{#1}
@@ -37,6 +38,7 @@
 \AtEndOfClass{\RequirePackage{enumerate}}
 \AtEndOfClass{\RequirePackage{minitoc}}
 \AtEndOfClass{\RequirePackage{amsthm, amsmath, amssymb}}
+\AtEndOfClass{\RequirePackage{color}}
 
 \AtEndOfClass{\pagestyle{fancy}}
 \AtEndOfClass{\lhead{\@course}}
