@@ -1,0 +1,86 @@
+\RequirePackage{fontspec}
+\RequirePackage{listings}
+\RequirePackage{mdframed}
+\RequirePackage{calc} % provides arithmetic
+\RequirePackage[usenames, dvipsnames, svgnames, table]{xcolor}
+
+\newcommand{\codeTitle}[2]{Code}
+\newcommand{\codeTitleContent}{%
+    \hspace*{3mm}
+    \begin{minipage}{0.75cm}
+        \includegraphics[width=\linewidth]{images/code.png}
+    \end{minipage}
+    \hspace*{1mm}
+    \begin{minipage}{\textwidth-1.05cm} % this only works with calc package
+        {\sffamily\Large \codeTitle}
+    \end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Font settings                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defaultfontfeatures{Ligatures=TeX}
+\setmonofont{Source Code Pro Light}[BoldFont=Source Code Pro]
+\setmainfont{Lato Light}[
+    Numbers=OldStyle,
+    BoldFont=Lato Regular,
+    ItalicFont=Lato Light Italic,
+    BoldItalicFont=Lato Italic
+]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Wraps the listings in an mdframe %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{light-gray}{RGB}{230, 230, 230}
+\BeforeBeginEnvironment{lstlisting}{%
+    \begin{mdframed}[
+            skipabove=4mm,
+            skipbelow=0mm,
+            %remove borders
+            rightline=false,
+            topline=false,
+            bottomline=false,
+            linewidth=1mm,
+            %margins
+            innertopmargin=2mm,
+            innerleftmargin=0mm,
+            innerbottommargin=0mm,
+            innerrightmargin=10pt,
+            backgroundcolor=light-gray,
+            linecolor=Gray
+        ]
+        \codeTitleContent
+        \vspace*{-2mm}
+    }
+\AfterEndEnvironment{lstlisting}{%
+    \end{mdframed}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Sets listings specific options   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstset{
+    language=Python,
+    showstringspaces=false,
+    numbers=left,
+    numbersep=7mm,
+    numberstyle=\color{Black},
+    stepnumber=1,
+    tabsize=3,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    basicstyle=\color{Black}\ttfamily,
+    commentstyle=\color{LimeGreen},
+    morecomment=[s]{"""}{"""},
+    keywordstyle=\color{BurntOrange}\bfseries,
+    stringstyle=\color{WildStrawberry},
+    frame=leftline,
+    framesep=0mm,
+    xleftmargin=3mm,
+    framesep=2mm,
+    framerule=0mm,
+    abovecaptionskip=5mm,
+    aboveskip=\baselineskip,
+    belowskip=\baselineskip
+}
+\endinput
