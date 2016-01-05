@@ -3,6 +3,11 @@
 \RequirePackage{mdframed}
 \RequirePackage{calc} % provides arithmetic
 \RequirePackage[usenames, dvipsnames, svgnames, table]{xcolor}
+\RequirePackage{array}
+\RequirePackage{tabu}
+\RequirePackage{longtable}
+
+% CODE LISTING
 
 \newcommand{\codeTitle}[2]{Code}
 \newcommand{\codeTitleContent}{%
@@ -15,6 +20,13 @@
         {\sffamily\Large \codeTitle}
     \end{minipage}
 }
+
+\definecolor{color1}{RGB}{124, 191, 48}   % lime green
+\definecolor{color2}{RGB}{243, 126, 25}% burnt orange
+\definecolor{color3}{RGB}{230, 6, 85}% strawberry
+\definecolor{header}{RGB}{211, 47, 0}
+\definecolor{row1}{RGB}{230, 230, 230}
+\definecolor{row2}{RGB}{240, 240, 240}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Font settings                    %
@@ -70,10 +82,10 @@
     breaklines=true,
     captionpos=b,
     basicstyle=\color{Black}\ttfamily,
-    commentstyle=\color{LimeGreen},
+    commentstyle=\color{color1},
     morecomment=[s]{"""}{"""},
-    keywordstyle=\color{BurntOrange}\bfseries,
-    stringstyle=\color{WildStrawberry},
+    keywordstyle=\color{color2}\bfseries,
+    stringstyle=\color{color3},
     frame=leftline,
     framesep=0mm,
     xleftmargin=3mm,
@@ -83,4 +95,11 @@
     aboveskip=\baselineskip,
     belowskip=\baselineskip
 }
+
+% TABLES!
+
+\everyrow{\tabucline[.4mm white]{}}
+\tabulinesep=^4mm_3mm
+\taburowcolors[2] 2{row1 .. row2}
 \endinput
+
