@@ -1,11 +1,14 @@
 \RequirePackage{fontspec}
 \RequirePackage{listings}
 \RequirePackage{mdframed}
+\RequirePackage{etoolbox}
 \RequirePackage{calc} % provides arithmetic
 \RequirePackage[usenames, dvipsnames, svgnames, table]{xcolor}
 \RequirePackage{array}
 \RequirePackage{tabu}
 \RequirePackage{longtable}
+\RequirePackage{amsmath, amssymb, amsthm}
+\RequirePackage{thmtools}
 
 % CODE LISTING
 
@@ -27,6 +30,7 @@
 \definecolor{header}{RGB}{211, 47, 0}
 \definecolor{row1}{RGB}{230, 230, 230}
 \definecolor{row2}{RGB}{240, 240, 240}
+\definecolor{emphcolor}{RGB}{165, 32, 23}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Font settings                    %
@@ -101,5 +105,99 @@
 \everyrow{\tabucline[.4mm white]{}}
 \tabulinesep=^4mm_3mm
 \taburowcolors[2] 2{row1 .. row2}
-\endinput
+
+% PROCLAMATIONS!
+\BeforeBeginEnvironment{theorem}{%
+    \begin{mdframed}[
+            skipabove=4mm,
+            skipbelow=0mm,
+            %remove borders
+            rightline=false,
+            topline=false,
+            bottomline=false,
+            linewidth=1mm,
+            %margins
+            innertopmargin=2mm,
+            innerleftmargin=4mm,
+            innerbottommargin=5mm,
+            innerrightmargin=10pt,
+            backgroundcolor=light-gray,
+            linecolor=Gray
+        ]
+    }
+\AfterEndEnvironment{theorem}{%
+    \end{mdframed}
+}
+\BeforeBeginEnvironment{tabu}{%
+    \begin{mdframed}[
+            skipabove=4mm,
+            skipbelow=0mm,
+            %remove borders
+            rightline=false,
+            topline=false,
+            bottomline=false,
+            linewidth=1mm,
+            %margins
+            innertopmargin=0mm,
+            innerleftmargin=0mm,
+            innerbottommargin=0mm,
+            innerrightmargin=0pt,
+            backgroundcolor=light-gray,
+            linecolor=Gray
+        ]
+    }
+\AfterEndEnvironment{tabu}{%
+    \end{mdframed}
+}
+
+\BeforeBeginEnvironment{lemma}{%
+    \begin{mdframed}[
+            skipabove=4mm,
+            skipbelow=0mm,
+            %remove borders
+            rightline=false,
+            topline=false,
+            bottomline=false,
+            linewidth=1mm,
+            %margins
+            innertopmargin=2mm,
+            innerleftmargin=4mm,
+            innerbottommargin=5mm,
+            innerrightmargin=10pt,
+            backgroundcolor=light-gray,
+            linecolor=Gray
+        ]
+    }
+\AfterEndEnvironment{lemma}{%
+    \end{mdframed}
+}
+
+\declaretheoremstyle[
+    headfont=\sffamily\Large,
+    notefont=\sffamily\Large,
+    notebraces={[]},
+    postheadspace={\newline},
+    headpunct={},
+    numberwithin=section
+]{theoremstyle}
+
+\declaretheoremstyle[
+    headfont=\sffamily\Large,
+    notefont=\sffamily\Large,
+    notebraces={[]},
+    postheadspace={\newline},
+    headpunct={},
+    sibling=theorem
+]{lemmastyle}
+\declaretheorem[style=theoremstyle, name=Theorem]{theorem}
+\declaretheorem[style=lemmastyle, name=Lemma]{lemma}
+\declaretheorem[name=Corollary]{corollary}
+\renewcommand{\emph}{\textcolor{emphcolor}}
+
+
+
+
+
+
+
 
